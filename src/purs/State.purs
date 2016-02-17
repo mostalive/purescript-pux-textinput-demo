@@ -3,29 +3,29 @@ module State where
 import Control.Monad.Eff.Console (CONSOLE(), log)
 import Prelude
 import Pux
+import Pux.DOM.HTML.Attributes (KeyboardEvent)
+import Debug.Trace (spy)
 
 data Route = Home | NotFound
 
-data Action = Increment | Decrement | PageView Route
+data Action = Changed KeyboardEvent | PageView Route
 
 type State =
   { route :: Route
-  , counter :: Int }
+  , text :: String }
 
 initialState :: State
 initialState =
   { route: NotFound
-  , counter: 0 }
+  , text: "not changed just yet" }
 
 update :: forall eff. Update (console :: CONSOLE | eff) State Action
-update action state input =
+update action state input = do
+  let unused = spy action
   case action of
     PageView route ->
       { state: state { route = route }
       , effects: [] }
-    Increment ->
-      { state: state { counter = state.counter + 1 }
-      , effects: [ do log "increment" ] }
-    Decrement ->
-      { state: state { counter = state.counter - 1 }
-      , effects: [ do log "decrement" ] }
+    (Changed event) ->
+      { state: state { text = "An event changed the text" }
+      , effects: [ do log "the text changed" ] }

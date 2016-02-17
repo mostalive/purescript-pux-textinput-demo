@@ -2,14 +2,15 @@ module View.Home where
 
 import Prelude hiding (div)
 import Pux
-import Pux.DOM.HTML.Elements (div, p, button, text)
-import Pux.DOM.HTML.Attributes (onClick, send)
+import Pux.DOM.HTML.Elements (div, input, label, p, text)
+import Pux.DOM.HTML.Attributes (htmlFor, id_ , onChange, send, type_, value)
 
 import State
 
+
 home :: State -> VirtualDOM
 home state = div $ do
-  p $ text ("Counter: " ++ show state.counter)
-  p $ do
-    button ! onClick (send Increment) $ text "Increment"
-    button ! onClick (send Decrement) $ text "Decrement"
+  let fieldId = "editme"
+  label ! htmlFor fieldId $ text "Edit me"
+  input ! (type_ "text") ! (id_ fieldId) ! (value state.text) ! onChange (send Changed)
+  p $ text ("Text is now: " ++ show state.text)

@@ -13,6 +13,7 @@
   },
   "devDependencies": {
     "purescript-lists": "~0.7.9",
-    "purescript-maps": "~0.5.4"
+    "purescript-maps": "~0.5.4",
+    "purescript-debug": "^0.1.3"
   }
 }
