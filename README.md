@@ -1,6 +1,7 @@
-# purescript-pux-boilerplate
+# purescript-pux-textbox-demo
 
-Skeleton [Pux](https://github.com/alexmingoia/purescript-pux/) isomorphic
+Demo of a [Pux](https://github.com/alexmingoia/purescript-pux/) textbox updating the page.
+Based on [Pux boilerplate](https://github.com/alexmingoia/purescript-pux-boilerplate), so you can play around with it in an isomorphic
 application with hot-reloading (using webpack, babel, and gulp).
 
 See the

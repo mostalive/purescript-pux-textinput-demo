@@ -3,7 +3,8 @@ module View.Home where
 import Prelude hiding (div)
 import Pux
 import Pux.DOM.HTML.Elements (div, input, label, p, text)
-import Pux.DOM.HTML.Attributes (htmlFor, id_ , onChange, send, type_, value)
+import Pux.DOM.HTML.Attributes (htmlFor, id_ , send, type_, value)
+import Pux.CustomOnChange (onChange)
 
 import State
 

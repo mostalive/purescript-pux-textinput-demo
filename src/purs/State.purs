@@ -3,12 +3,12 @@ module State where
 import Control.Monad.Eff.Console (CONSOLE(), log)
 import Prelude
 import Pux
-import Pux.DOM.HTML.Attributes (KeyboardEvent)
+import Pux.CustomOnChange (ChangeEvent)
 import Debug.Trace (spy)
 
 data Route = Home | NotFound
 
-data Action = Changed KeyboardEvent | PageView Route
+data Action = Changed ChangeEvent | PageView Route
 
 type State =
   { route :: Route
@@ -26,6 +26,6 @@ update action state input = do
     PageView route ->
       { state: state { route = route }
       , effects: [] }
-    (Changed event) ->
-      { state: state { text = "An event changed the text" }
+    (Changed ev) ->
+      { state: state { text = ev.target.value }
       , effects: [ do log "the text changed" ] }
